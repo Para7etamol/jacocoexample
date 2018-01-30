@@ -1,9 +1,9 @@
-package com/example/jacoco/subtractservice;
+package com.example.jacoco.subtractservice;
 
 import javax.ejb.Stateless;
 
 @Stateless
-public class SubtracvtServiceImplementation implements CalculatorServiceRemote {
+public class SubtractServiceImplementation implements SubtractServiceRemote {
 
     @Override
     public int subtract(int a, int b){

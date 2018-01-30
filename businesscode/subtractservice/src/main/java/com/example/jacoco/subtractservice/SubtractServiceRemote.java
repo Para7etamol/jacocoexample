@@ -1,4 +1,4 @@
-package com/example/jacoco/subtractservice;
+package com.example.jacoco.subtractservice;
 
 
 import javax.ejb.Remote;
