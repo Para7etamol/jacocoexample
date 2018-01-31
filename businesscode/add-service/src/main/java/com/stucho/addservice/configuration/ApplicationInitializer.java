@@ -1,8 +1,9 @@
 package com.stucho.addservice.configuration;
 
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer implements WebApplicationInitializer {
 	
  @Override
  protected Class < ? > [] getRootConfigClasses() {
