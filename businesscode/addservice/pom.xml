@@ -1,2 +1,12 @@
-// addserverice.war is build from this (mvn package)
-//
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.stucho.jacocoexample</groupId>
+  <artifactId>add_service</artifactId>
+  <version>0.8-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>Add Service</name> 
+</project>
