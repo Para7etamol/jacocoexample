@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AddController {
  
  @ResponseBody
- @RequestMapping(value = "/add", method = RequestMethod.POST)
+ @RequestMapping(value = "/add", method = RequestMethod.GET)
  public int pay(@RequestParam(value = "num1") int num1,
 		 @RequestParam(value = "num2") int num2) {
     	 
