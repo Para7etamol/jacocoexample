@@ -61,7 +61,6 @@
 				<configuration>
 					<adminurl>t3://localhost:7001</adminurl>
 					<user>weblogic</user>
-					<password>password</password>
 					<upload>true</upload>
 					<action>deploy</action>
 					<remote>false</remote>
