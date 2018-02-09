@@ -32,7 +32,7 @@ public class EJBClientMain {
 			InitialContext ic = getInitialContext("t3://localhost:7001");
 
 			AddBeanRemote obj = (AddBeanRemote) ic.lookup("addBean#com.stucho.AddBeanRemote");
-			System.out.println("The resut is : " + obj.add(21, 46));
+			System.out.println("The resut is : " + obj.add(31, 42));
 		} catch (Throwable t) {
 			t.printStackTrace();
 			System.exit(-1);
