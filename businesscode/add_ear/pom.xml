@@ -7,7 +7,7 @@
     <version>RC-SNAPSHOT</version>
   </parent>
   
-  <artifactId>add</artifactId>
+  <artifactId>add_ear</artifactId>
   <packaging>ear</packaging>
   
   
