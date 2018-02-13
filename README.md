@@ -13,7 +13,7 @@ Weblogic-Version: 12.1.3
 
 ### Configure 
 
-If not existent, create setUserOverrides.sh in <your-domain>/bin.
+If not existent, create setUserOverrides.sh in \<your-domain\>/bin.
 
 Add to setUserOverrides.sh:
 
@@ -21,7 +21,7 @@ Add to setUserOverrides.sh:
 export EXTRA_JAVA_PROPERTIES="-javaagent:lib/org.jacoco.agent-0.8.0-runtime.jar=output=tcpserver,address=*,port=6301,includes=com.example.jacoco.*"
 ~~~
 
-Add org.jacoco.agent-0.8.0-runtime.jar to <your-domain>/lib.
+Add org.jacoco.agent-0.8.0-runtime.jar to \<your-domain\>/lib.
 
 You can get the agent from
 
