@@ -6,6 +6,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import com.stucho.add_service.AddBeanRemote;
+import com.stucho.substract_service.SubstractBeanRemote;
+
 /**
  * This client uses the remote HelloServer methods.
  *
@@ -31,16 +34,22 @@ public class EJBClientMain {
 
 			InitialContext ic = getInitialContext("t3://localhost:7001");
 
-			AddBeanRemote obj = (AddBeanRemote) ic.lookup("addBean#com.stucho.AddBeanRemote");
-			System.out.println("The resut is : " + obj.add(31, 42));
-		} catch (Throwable t) {
+			AddBeanRemote obj1 = (AddBeanRemote) ic.lookup("addBean#com.stucho.add_service.AddBeanRemote");
+			System.out.println("The sum is : " + obj1.add(31, 17));
+			
+			SubstractBeanRemote ob2 = (SubstractBeanRemote) ic.lookup("substractBean#com.stucho.substract_service.SubstractBeanRemote");
+			System.out.println("The difference is : " + ob2.substract(56, 12));
+			
+		} catch (final Throwable t) {
+			
 			t.printStackTrace();
 			System.exit(-1);
 		}
 
 	}
 
-	private static InitialContext getInitialContext(String url) throws NamingException {
+	private static InitialContext getInitialContext(final String url) throws NamingException {
+		
 		Hashtable<String, String> env = new Hashtable<String, String>();
 		env.put(Context.INITIAL_CONTEXT_FACTORY, JNDI_FACTORY);
 		env.put(Context.PROVIDER_URL, url);

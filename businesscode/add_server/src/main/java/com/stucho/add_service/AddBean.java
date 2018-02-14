@@ -1,4 +1,4 @@
-package com.stucho;
+package com.stucho.add_service;
 
 import javax.ejb.Stateless;
 
@@ -17,8 +17,18 @@ public class AddBean implements AddBeanRemote {
 
 	@Override
 	public int add(final int num1, final int num2) {
-		// TODO Auto-generated method stub
-		return num1+num2;
+		
+		if(num1 == 0 && num2 == 0){
+			
+			System.out.println("Unnecessary computation ! ");
+			return 0;
+		}else{
+			
+			System.out.println("Processing...");
+			return num1+num2;
+		}
+		
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.stucho;
+package com.stucho.add_service;
 
 import javax.ejb.Remote;
 
