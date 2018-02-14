@@ -63,7 +63,7 @@ java -jar jacococli.jar dump --address localhost --port 6301 --destfile jacoco.e
 You can use the file "jacoco.exec" to produce a report:
 
 ~~~
-java -jar {local location}\jacococli.jar report {local location}\jacoco.exec --classfiles {local  location}\add_server\target\classes --html {expected report location}  --sourcefiles {local location}\add_server\src\main.
+java -jar {local location}/jacococli.jar report {local location}/jacoco.exec --classfiles {local  location}/add_server/target/classes --html {expected report location}  --sourcefiles {local location}/add_server/src/main/java
 ~~~
 
 Links
