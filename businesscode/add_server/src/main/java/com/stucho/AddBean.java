@@ -1,6 +1,5 @@
 package com.stucho;
 
-import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
 
 /**
