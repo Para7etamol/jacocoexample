@@ -39,7 +39,7 @@ public class AddBeanTest {
     }
 
     @Test
-    public void testPingUsingClasses() throws NamingException {
+    public void testAddition() throws NamingException {
     	
     	AddBeanRemote addBean = (AddBeanRemote) ctx.lookup(LOOKUP_ADD_BEAN);
         assertNotNull(addBean);

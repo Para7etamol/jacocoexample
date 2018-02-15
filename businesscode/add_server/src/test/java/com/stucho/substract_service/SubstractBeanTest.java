@@ -39,7 +39,7 @@ public class SubstractBeanTest {
     }
 
     @Test
-    public void testPingUsingClasses() throws NamingException {
+    public void testSubstraction() throws NamingException {
     	
     	SubstractBeanRemote substractBean = (SubstractBeanRemote) ctx.lookup(LOOKUP_SUBSTRACT_BEAN);
         assertNotNull(substractBean);
