@@ -9,6 +9,7 @@
   <modules>
     <module>add_ear</module>
     <module>add_server</module>
+    <module>multiply_divide_server</module>
     <module>ejb_client</module>
   </modules>
 </project>

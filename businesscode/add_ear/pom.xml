@@ -40,6 +40,11 @@
 	      <artifactId>add_server</artifactId>
 	      <bundleFileName>add_server.jar</bundleFileName>
 	    </ejbModule>
+	    <ejbModule>
+	      <groupId>com.stucho</groupId>
+	      <artifactId>multiply_divide_server</artifactId>
+	      <bundleFileName>multiply_divide_server.jar</bundleFileName>
+	    </ejbModule>
 	  </modules>
 	</configuration>
       </plugin>
@@ -96,6 +101,13 @@
     <dependency>
       <groupId>com.stucho</groupId>
       <artifactId>add_server</artifactId>
+      <version>RC-SNAPSHOT</version>
+      <type>ejb</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.stucho</groupId>
+      <artifactId>multiply_divide_server</artifactId>
       <version>RC-SNAPSHOT</version>
       <type>ejb</type>
     </dependency>

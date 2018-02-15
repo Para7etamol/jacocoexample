@@ -6,7 +6,7 @@
 		<groupId>com.stucho</groupId>
 		<version>RC-SNAPSHOT</version>
 	</parent>
-	<artifactId>add_server</artifactId>
+	<artifactId>multiply_divide_server</artifactId>
 	<packaging>ejb</packaging>
 
 	<properties>
