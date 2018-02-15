@@ -18,7 +18,7 @@ If not existent, create setUserOverrides.sh in \<your-domain\>/bin.
 Add to setUserOverrides.sh:
 
 ~~~
-export EXTRA_JAVA_PROPERTIES="-javaagent:lib/org.jacoco.agent-0.8.0-runtime.jar=output=tcpserver,address=*,port=6301,includes=com.example.jacoco.*"
+export EXTRA_JAVA_PROPERTIES="-javaagent:lib/org.jacoco.agent-0.8.0-runtime.jar=output=tcpserver,address=*,port=6301,includes=com.stucho.*"
 ~~~
 
 Add org.jacoco.agent-0.8.0-runtime.jar to \<your-domain\>/lib.
@@ -48,6 +48,23 @@ Again you can get the cli-jar from
 
 http://search.maven.org/#search|ga|1|g%3Aorg.jacoco
 
+
+Getting coverage data from weblogic and create first report
+-----------------------------------------------------------
+
+You don't have to make jacoco-entries in any pom.xml to collect coverage and produce a report!
+The jacocoagent is instrumenting the java code on-the-fly.
+So after deploying the plain ear to the weblogic server and calling it's business methods this call fetches the coverage recorded so far:
+
+~~~
+java -jar jacococli.jar dump --address localhost --port 6301 --destfile jacoco.exec
+~~~
+
+You can use the file "jacoco.exec" to produce a report:
+
+~~~
+java -jar {local location}/jacococli.jar report {local location}/jacoco.exec --classfiles {local  location}/add_server/target/classes --html {expected report location}  --sourcefiles {local location}/add_server/src/main/java
+~~~
 
 Links
 -----
