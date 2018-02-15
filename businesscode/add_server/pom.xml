@@ -12,19 +12,40 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <oracle.home>C:\Oracle\Middleware\Oracle_Home</oracle.home>
+        <weblogic.jar.path>${oracle.home}\wlserver\server\lib\weblogic.jar</weblogic.jar.path>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency> 
+              
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
 
     <build>
+
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -37,6 +58,7 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-ejb-plugin</artifactId>
@@ -45,6 +67,7 @@
                     <ejbVersion>3.1</ejbVersion>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -70,6 +93,21 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <argLine>-Xmx128m</argLine>
+                    <enableAssertions>false</enableAssertions>
+                    <classpathDependencyScopeExclude>compile</classpathDependencyScopeExclude>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${weblogic.jar.path}</additionalClasspathElement>
+                    </additionalClasspathElements>                            
+                </configuration>
+            </plugin>
+            
         </plugins>
     </build>
 
