@@ -1,0 +1,14 @@
+<profiles>
+
+	<profile>
+		<id>main</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+
+		<properties>
+			<oracle.home>C:\Oracle\Middleware\Oracle_Home</oracle.home>
+		</properties>
+	</profile>
+	
+</profiles>
