@@ -84,9 +84,9 @@
 	</executions>
 	<dependencies>
 	  <dependency>
-	    <groupId>weblogic</groupId>
+	    <groupId>com.oracle.weblogic</groupId>
 	    <artifactId>wlfullclient</artifactId>
-	    <version>12.1.3.0.0</version>
+	    <version>12.1.3.0</version>
 	    <scope>runtime</scope>
 	  </dependency>
 	</dependencies>
