@@ -141,9 +141,7 @@
 						<configuration>
 							<!-- Sets the path to the file which contains the execution data. -->
 
-							<!--  <dataFile>D:\jacocoexample\businesscode\target\coverage-reports\add_server-jacoco-ut.exec</dataFile>-->
 							<dataFile>${project.parent.build.directory}/coverage-reports/${project.name}-jacoco-ut.exec</dataFile>
-							<!--   <jacoco.ut.execution.data.file>${project.parent.build.directory}/coverage-reports/${project.name}-jacoco-ut.exec</jacoco.ut.execution.data.file>-->
 							<!-- Sets the output directory for the code coverage report. -->
 							<outputDirectory>D:\Kannan/jacocoadd-ut</outputDirectory>
 						</configuration>
@@ -159,9 +157,7 @@
 						<configuration>
 							<!-- Sets the path to the file which contains the execution data. -->
 
-							<!--  <dataFile>D:\jacocoexample\businesscode\target\coverage-reports\add_server-jacoco-it.exec</dataFile>-->
 							<dataFile>${project.parent.build.directory}/coverage-reports/${project.name}-jacoco-it.exec</dataFile>
-							 <!--  <jacoco.it.execution.data.file>${project.parent.build.directory}/coverage-reports/${project.name}-jacoco-it.exec</jacoco.it.execution.data.file>-->
 							<!-- Sets the output directory for the code coverage report. -->
 							<outputDirectory>D:\Kannan/jacocoaddit</outputDirectory>
 						</configuration>
@@ -218,7 +214,7 @@
                     <execution>
                         <goals>
                             <goal>integration-test</goal>
-                            <goal>verify</goal>
+                            
                         </goals>
                         <configuration>
                             <includes>
