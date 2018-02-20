@@ -11,6 +11,7 @@
     <module>add_server</module>
     <module>multiply_divide_server</module>
     <module>ejb_client</module>
+    <module>report_service</module>
   </modules>
 </project>
 
