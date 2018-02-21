@@ -18,19 +18,20 @@
 			<groupId>com.stucho</groupId>
 			<artifactId>add_server</artifactId>
 			<version>RC-SNAPSHOT</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.stucho</groupId>
 			<artifactId>multiply_divide_server</artifactId>
 			<version>RC-SNAPSHOT</version>
-			<scope>runtime</scope>
+			<scope>compile</scope>
 		</dependency>
 
 	</dependencies>
 
 	<build>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -56,11 +57,11 @@
 						<phase>verify</phase>
 						<goals>
 							<goal>report-aggregate</goal>
-						</goals>
+						</goals>						
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
-	</build>	
+	</build>
 
 </project>
