@@ -1,4 +1,4 @@
-package com.stucho.add_service;
+package com.stucho.substract_service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -12,13 +12,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class AddBeanTest {
+public class SubstractBeanIT {
 
     private EJBContainer ejbContainer;
     private Context ctx;
     
-    // Name of AddBean in EJBContainer
-    private static final String LOOKUP_ADD_BEAN = "addBean#com.stucho.add_service.AddBeanRemote";
+    // Name of SubstractBean in EJBContainer
+    private static final String LOOKUP_SUBSTRACT_BEAN = "substractBean#com.stucho.substract_service.SubstractBeanRemote";
 
     @Before
     public void setupTest() {
@@ -39,12 +39,13 @@ public class AddBeanTest {
     }
 
     @Test
-    public void testAddition() throws NamingException {
+    public void testSubstraction() throws NamingException {
     	
-    	AddBeanRemote addBean = (AddBeanRemote) ctx.lookup(LOOKUP_ADD_BEAN);
-        assertNotNull(addBean);
-        assertTrue(addBean.add(5, 4) == 9);
+    	SubstractBeanRemote substractBean = (SubstractBeanRemote) ctx.lookup(LOOKUP_SUBSTRACT_BEAN);
+        assertNotNull(substractBean);
+        assertTrue(substractBean.substract(0, 0) == 0);
         
     }
+    
 
 }

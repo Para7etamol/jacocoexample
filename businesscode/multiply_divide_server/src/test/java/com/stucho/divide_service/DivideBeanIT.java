@@ -1,8 +1,8 @@
-package com.stucho.substract_service;
+package com.stucho.divide_service;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
+import javax.ejb.EJBException;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -12,13 +12,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class SubstractBeanTest {
+public class DivideBeanIT {
 
     private EJBContainer ejbContainer;
     private Context ctx;
     
-    // Name of SubstractBean in EJBContainer
-    private static final String LOOKUP_SUBSTRACT_BEAN = "substractBean#com.stucho.substract_service.SubstractBeanRemote";
+    // Name of DivideBean in EJBContainer
+    private static final String LOOKUP_DIVIDE_BEAN = "divideBean#com.stucho.divide_service.DivideBeanRemote";
 
     @Before
     public void setupTest() {
@@ -38,13 +38,12 @@ public class SubstractBeanTest {
         }
     }
 
-    @Test
-    public void testSubstraction() throws NamingException {
+    @Test(expected = EJBException.class)
+    public void testZeroByZeroDivision() throws NamingException {
     	
-    	SubstractBeanRemote substractBean = (SubstractBeanRemote) ctx.lookup(LOOKUP_SUBSTRACT_BEAN);
-        assertNotNull(substractBean);
-        assertTrue(substractBean.substract(0, 0) == 0);
-        
+    	DivideBeanRemote divideBean = (DivideBeanRemote) ctx.lookup(LOOKUP_DIVIDE_BEAN);
+        assertNotNull(divideBean);
+        divideBean.divide(0, 0);        
     }
     
 

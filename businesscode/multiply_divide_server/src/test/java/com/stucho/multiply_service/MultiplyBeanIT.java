@@ -1,8 +1,8 @@
-package com.stucho.divide_service;
+package com.stucho.multiply_service;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import javax.ejb.EJBException;
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -11,14 +11,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.stucho.multiply_service.MultiplyBeanRemote;
 
-public class DivideBeanTest {
+
+public class MultiplyBeanIT {
 
     private EJBContainer ejbContainer;
     private Context ctx;
     
-    // Name of DivideBean in EJBContainer
-    private static final String LOOKUP_DIVIDE_BEAN = "divideBean#com.stucho.divide_service.DivideBeanRemote";
+    // Name of MultiplyBean in EJBContainer
+    private static final String LOOKUP_MULTIPLY_BEAN = "multiplyBean#com.stucho.multiply_service.MultiplyBeanRemote";
 
     @Before
     public void setupTest() {
@@ -38,13 +40,13 @@ public class DivideBeanTest {
         }
     }
 
-    @Test(expected = EJBException.class)
-    public void testZeroByZeroDivision() throws NamingException {
+    @Test
+    public void testMultiplication() throws NamingException {
     	
-    	DivideBeanRemote divideBean = (DivideBeanRemote) ctx.lookup(LOOKUP_DIVIDE_BEAN);
-        assertNotNull(divideBean);
-        divideBean.divide(0, 0);        
+    	MultiplyBeanRemote mulitiplierBean = (MultiplyBeanRemote) ctx.lookup(LOOKUP_MULTIPLY_BEAN);
+        assertNotNull(mulitiplierBean);
+        assertTrue(mulitiplierBean.multiply(5, 4) == 20);
+        
     }
-    
 
 }

@@ -1,4 +1,4 @@
-package com.stucho.multiply_service;
+package com.stucho.add_service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -11,16 +11,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.stucho.multiply_service.MultiplyBeanRemote;
 
-
-public class MultiplyBeanTest {
+public class AddBeanIT {
 
     private EJBContainer ejbContainer;
     private Context ctx;
     
-    // Name of MultiplyBean in EJBContainer
-    private static final String LOOKUP_MULTIPLY_BEAN = "multiplyBean#com.stucho.multiply_service.MultiplyBeanRemote";
+    // Name of AddBean in EJBContainer
+    private static final String LOOKUP_ADD_BEAN = "addBean#com.stucho.add_service.AddBeanRemote";
 
     @Before
     public void setupTest() {
@@ -41,11 +39,11 @@ public class MultiplyBeanTest {
     }
 
     @Test
-    public void testMultiplication() throws NamingException {
+    public void testAddition() throws NamingException {
     	
-    	MultiplyBeanRemote mulitiplierBean = (MultiplyBeanRemote) ctx.lookup(LOOKUP_MULTIPLY_BEAN);
-        assertNotNull(mulitiplierBean);
-        assertTrue(mulitiplierBean.multiply(5, 4) == 20);
+    	AddBeanRemote addBean = (AddBeanRemote) ctx.lookup(LOOKUP_ADD_BEAN);
+        assertNotNull(addBean);
+        assertTrue(addBean.add(5, 4) == 9);
         
     }
 
