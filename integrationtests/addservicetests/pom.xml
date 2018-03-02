@@ -1,2 +1,0 @@
-// pom to run integration tests AND create jacoco-report
-// mvn verify (respectivly mvn site ?)

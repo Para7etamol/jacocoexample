@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	
 	<properties>
-		<weblogic.jar.path>${oracle.home}\wlserver\server\lib\weblogic.jar</weblogic.jar.path>
+		<weblogic.jar.path>${oracle.home}/wlserver/server/lib/weblogic.jar</weblogic.jar.path>
 	</properties>
 
 	<modules>
