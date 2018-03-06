@@ -23,10 +23,6 @@ public class EJBClientMain {
 	 */
 	public final static String JNDI_FACTORY = "weblogic.jndi.WLInitialContextFactory";
 
-	int port;
-	String host;
-
-
 	public EJBClientMain() {
 	}
 
