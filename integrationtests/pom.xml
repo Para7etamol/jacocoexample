@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>integrationtests</artifactId>
 	<groupId>com.stucho</groupId>
-	<version>RC-SNAPSHOT</version>
+	<version>INT-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<properties>
@@ -23,6 +23,59 @@
 		<pluginManagement>
 
 			<plugins>
+			
+			<!-- Start maven-ant run plugin -->
+				
+			
+            
+            <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                       <!--   <version>${version.maven.antrunplugin}</version>-->
+                       <version>1.8.1</version>
+                        <executions>
+                            <execution>
+                                <phase>prepare-package</phase>
+                                <configuration>
+                                    <target xmlns:jacoco="antlib:org.jacoco.ant">
+                                       
+                                        <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+                                            <classpath path="${project.build.directory}"/>
+                                        </taskdef>
+                                        <jacoco:report>
+                                            <executiondata>
+                                                <file file="${project.build.directory}/add_sub_tests/target/add_sub_tests-jacoco-it.exec"/>
+                                                <file file="${project.build.directory}/multiply_divide_tests/target/multiply_divide_tests-jacoco-it.exec"/>
+                                            </executiondata>
+                                            <structure name="Sample Tests">
+                                                <classfiles>
+                                                    <fileset dir="../../target/test-classes"/>
+                                                </classfiles>
+                                                <sourcefiles encoding="UTF-8">
+                                                    <fileset dir="../../src/test/java"/>
+                                                </sourcefiles>
+                                            </structure>
+                                            <html destdir="${project.build.directory}/report/target/site"/>
+                                        </jacoco:report>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.jacoco</groupId>
+                                <artifactId>org.jacoco.ant</artifactId>
+                                <!--  <version>${version.org.jacoco.ant}</version>-->
+                                <version>1.8.1</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+				
+				
+				<!-- End maven-ant run plugin -->
+			
 
 				<plugin>
 					<groupId>org.jacoco</groupId>
@@ -48,7 +101,7 @@
 
 					</executions>
 				</plugin>
-
+				
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
@@ -56,7 +109,9 @@
 					<configuration>
 						<argLine>-Xmx128m ${surefireArgLine}</argLine>
 						<enableAssertions>false</enableAssertions>
-						 
+						
+                   
+
 					</configuration>
 				</plugin>
 				<plugin>
@@ -72,7 +127,13 @@
 						</additionalClasspathElements>
 						<skipTests>${skip.unit.tests}</skipTests>
                  <skipTests>${skip.unit.tests}</skipTests>
-               
+                <includes>
+                    <include>com.stucho.divide_service.DivideServiceIT.java</include>
+                    
+                    <include>com.stucho.substract_service.SubtractServiceIT.java</include>
+                  
+                   
+                </includes>
               
                 <skipTests>${skipUTMTs}</skipTests>
 					</configuration>
