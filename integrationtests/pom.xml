@@ -29,12 +29,13 @@
 			
             
             <plugin>
+            			<groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>
                        <!--   <version>${version.maven.antrunplugin}</version>-->
-                       <version>1.8.1</version>
+                       <version>1.8</version>
                         <executions>
                             <execution>
-                                <phase>prepare-package</phase>
+                                <phase>post-integration-test</phase>
                                 <configuration>
                                     <target xmlns:jacoco="antlib:org.jacoco.ant">
                                        
@@ -43,8 +44,7 @@
                                         </taskdef>
                                         <jacoco:report>
                                             <executiondata>
-                                                <file file="${project.build.directory}/add_sub_tests/target/add_sub_tests-jacoco-it.exec"/>
-                                                <file file="${project.build.directory}/multiply_divide_tests/target/multiply_divide_tests-jacoco-it.exec"/>
+                                                <file file="${project.build.directory}/${project.name}-jacoco-it.exec"/>                                                
                                             </executiondata>
                                             <structure name="Sample Tests">
                                                 <classfiles>
@@ -67,8 +67,7 @@
                             <dependency>
                                 <groupId>org.jacoco</groupId>
                                 <artifactId>org.jacoco.ant</artifactId>
-                                <!--  <version>${version.org.jacoco.ant}</version>-->
-                                <version>1.8.1</version>
+                                <version>0.8.0</version>
                             </dependency>
                         </dependencies>
                     </plugin>
