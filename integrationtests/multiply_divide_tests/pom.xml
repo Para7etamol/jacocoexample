@@ -4,7 +4,7 @@
 <parent>
 		<artifactId>integrationtests</artifactId>
 		<groupId>com.stucho</groupId>
-		<version>RC-SNAPSHOT</version>
+		<version>INT-SNAPSHOT</version>
 	</parent>
     <artifactId>multiply_divide_tests</artifactId>
 

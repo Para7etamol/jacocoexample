@@ -3,10 +3,10 @@
   <parent>
     <groupId>com.stucho</groupId>
     <artifactId>integrationtests</artifactId>
-    <version>RC-SNAPSHOT</version>
+    <version>INT-SNAPSHOT</version>
   </parent>
   <artifactId>report</artifactId>
- <version>0.0.1-SNAPSHOT</version>
+ <version>CLIENT-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>report</name>
 	<description>report desc</description>
@@ -16,22 +16,34 @@
 			<groupId>com.stucho</groupId>
 			<artifactId>add_sub_tests</artifactId>
 			<!-- <version>CLIENT-SNAPSHOT</version> -->
-			 <version>RC-SNAPSHOT</version>
+			 <version>INT-SNAPSHOT</version>
+			  <type>jar</type>
+			<!--  <scope>compile</scope>-->
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.stucho</groupId>
 			<artifactId>multiply_divide_tests</artifactId>
 			<!-- <version>CLIENT-SNAPSHOT</version> -->
-			 <version>RC-SNAPSHOT</version>
+			 <version>INT-SNAPSHOT</version>
+			  <type>jar</type>
+			<!--<scope>compile</scope>-->
 			<scope>compile</scope>
 		</dependency>
+		
+
+		
+		
 		
 	</dependencies>
 
 	<build>
 		
 		<plugins>
+		
+		
+		
+		
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>

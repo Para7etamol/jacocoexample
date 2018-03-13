@@ -3,7 +3,7 @@
  <parent>
 		<artifactId>integrationtests</artifactId>
 		<groupId>com.stucho</groupId>
-		<version>RC-SNAPSHOT</version>
+		<version>INT-SNAPSHOT</version>
 	</parent>
     <artifactId>add_sub_tests</artifactId>
 
@@ -55,13 +55,7 @@
 			<scope>runtime</scope>
 			<type>jar</type>
 			</dependency>
-		<!-- 	<dependency>
-     <groupId>com.stucho</groupId>
-			<artifactId>add_server</artifactId>
-			<version>RC-SNAPSHOT</version>
-    <scope>system</scope>
-    <systemPath>${project.basedir}/target/add_server-RC-SNAPSHOT.jar</systemPath>
-</dependency>-->
+		
 	
 			<dependency>
 			<groupId>com.oracle.weblogic</groupId>
@@ -76,6 +70,19 @@
 	<build>
 
 		<plugins>
+		<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			
 		<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -133,11 +140,9 @@
 		
 		
 
-
 			
 		</plugins>
 
 	</build>
 
-	
 </project>
