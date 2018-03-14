@@ -48,10 +48,10 @@
                                             </executiondata>
                                             <structure name="Sample Tests">
                                                 <classfiles>
-                                                    <fileset dir="../../target/test-classes"/>
+                                                    <fileset dir="${project.build.directory}/test-classes"/>
                                                 </classfiles>
                                                 <sourcefiles encoding="UTF-8">
-                                                    <fileset dir="../../src/test/java"/>
+                                                    <fileset dir="../${project.name}/src/test/java"/>
                                                 </sourcefiles>
                                             </structure>
                                             <html destdir="${project.build.directory}/report/target/site"/>
