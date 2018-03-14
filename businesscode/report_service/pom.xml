@@ -7,10 +7,7 @@
     <version>RC-SNAPSHOT</version>
   </parent>
   <artifactId>report_service</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>report_service</name>
-  <description>report_service desc</description>
 
   <dependencies>
     <dependency>

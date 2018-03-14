@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>integrationtests</artifactId>
   <groupId>com.stucho</groupId>
-  <version>INT-SNAPSHOT</version>
+  <version>RC-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <properties>
