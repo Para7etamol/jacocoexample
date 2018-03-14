@@ -1,157 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>integrationtests</artifactId>
-	<groupId>com.stucho</groupId>
-	<version>INT-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>integrationtests</artifactId>
+  <groupId>com.stucho</groupId>
+  <version>INT-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <properties>
+    <weblogic.jar.path>${oracle.home}/wlserver/server/lib/weblogic.jar</weblogic.jar.path>
+  </properties>
+  <modules>
+    <module>add_sub_tests</module>
+    <module>multiply_divide_tests</module>
+    <module>report</module>
+  </modules>
+  
+  <!-- Added for Integration test module -->
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+	<!-- Start maven-ant run plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <!--   <version>${version.maven.antrunplugin}</version>-->
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <phase>post-integration-test</phase>
+              <configuration>
+                <target xmlns:jacoco="antlib:org.jacoco.ant">
+                  <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+                    <classpath path="${project.build.directory}"/>
+                  </taskdef>
+                  <jacoco:report>
+                    <executiondata>
+                      <file file="${project.build.directory}/${project.name}-jacoco-it.exec"/>                                                
+                    </executiondata>
+                    <structure name="Sample Tests">
+                      <classfiles>
+                        <fileset dir="${project.build.directory}/test-classes"/>
+                      </classfiles>
+                      <sourcefiles encoding="UTF-8">
+                        <fileset dir="../${project.name}/src/test/java"/>
+                      </sourcefiles>
+                    </structure>
+                    <html destdir="${project.build.directory}/report/target/site"/>
+                  </jacoco:report>
+                </target>
+              </configuration>
+              <goals>
+                <goal>run</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.jacoco</groupId>
+              <artifactId>org.jacoco.ant</artifactId>
+              <version>0.8.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+	<!-- End maven-ant run plugin -->
+
+	<plugin>
+	  <groupId>org.jacoco</groupId>
+	  <artifactId>jacoco-maven-plugin</artifactId>
+	  <version>0.7.9</version>
+	  <executions>
+	    <!-- Prepares the property pointing to the JaCoCo runtime agent which 
+		 is passed as VM argument when Maven the Surefire plugin is executed. -->
+	    <execution>
+	      <id>pre-integration-test</id>
+	      <goals>
+		<goal>prepare-agent-integration</goal>
+	      </goals>
+	      <configuration>
+		<!-- Sets the path to the file which contains the execution data. -->
+		<destFile>${project.build.directory}/${project.name}-jacoco-it.exec</destFile>
+		<!-- Sets the name of the property containing the settings for JaCoCo 
+		     runtime agent. -->
+		<propertyName>failsafeArgLine</propertyName>
+	      </configuration>
+	    </execution>
+
+	  </executions>
+	</plugin>
 	
-	<properties>
-		<weblogic.jar.path>${oracle.home}/wlserver/server/lib/weblogic.jar</weblogic.jar.path>
-	</properties>
-    <modules>
-        <module>add_sub_tests</module>
-         <module>multiply_divide_tests</module>
-        <module>report</module>
-    </modules>
-    
-    <!-- Added for Integration test module -->
-    
-    <build>
+	<plugin>
+	  <groupId>org.apache.maven.plugins</groupId>
+	  <artifactId>maven-surefire-plugin</artifactId>
+	  <version>2.20.1</version>
+	  <configuration>
+	    <argLine>-Xmx128m ${surefireArgLine}</argLine>
+	    <enableAssertions>false</enableAssertions>
+	  </configuration>
+	</plugin>
 
-		<pluginManagement>
-
-			<plugins>
-			
-			<!-- Start maven-ant run plugin -->
-				
-			
-            
-            <plugin>
-            			<groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-antrun-plugin</artifactId>
-                       <!--   <version>${version.maven.antrunplugin}</version>-->
-                       <version>1.8</version>
-                        <executions>
-                            <execution>
-                                <phase>post-integration-test</phase>
-                                <configuration>
-                                    <target xmlns:jacoco="antlib:org.jacoco.ant">
-                                       
-                                        <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-                                            <classpath path="${project.build.directory}"/>
-                                        </taskdef>
-                                        <jacoco:report>
-                                            <executiondata>
-                                                <file file="${project.build.directory}/${project.name}-jacoco-it.exec"/>                                                
-                                            </executiondata>
-                                            <structure name="Sample Tests">
-                                                <classfiles>
-                                                    <fileset dir="${project.build.directory}/test-classes"/>
-                                                </classfiles>
-                                                <sourcefiles encoding="UTF-8">
-                                                    <fileset dir="../${project.name}/src/test/java"/>
-                                                </sourcefiles>
-                                            </structure>
-                                            <html destdir="${project.build.directory}/report/target/site"/>
-                                        </jacoco:report>
-                                    </target>
-                                </configuration>
-                                <goals>
-                                    <goal>run</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.jacoco</groupId>
-                                <artifactId>org.jacoco.ant</artifactId>
-                                <version>0.8.0</version>
-                            </dependency>
-                        </dependencies>
-                    </plugin>
-				
-				
-				<!-- End maven-ant run plugin -->
-			
-
-				<plugin>
-					<groupId>org.jacoco</groupId>
-					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.7.9</version>
-					<executions>
-						<!-- Prepares the property pointing to the JaCoCo runtime agent which 
-							is passed as VM argument when Maven the Surefire plugin is executed. -->
-						
-						<execution>
-							<id>pre-integration-test</id>
-							<goals>
-								<goal>prepare-agent-integration</goal>
-							</goals>
-							<configuration>
-								<!-- Sets the path to the file which contains the execution data. -->
-								<destFile>${project.build.directory}/${project.name}-jacoco-it.exec</destFile>
-								<!-- Sets the name of the property containing the settings for JaCoCo 
-									runtime agent. -->
-								<propertyName>failsafeArgLine</propertyName>
-							</configuration>
-						</execution>
-
-					</executions>
-				</plugin>
-				
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.20.1</version>
-					<configuration>
-						<argLine>-Xmx128m ${surefireArgLine}</argLine>
-						<enableAssertions>false</enableAssertions>
-						
-                   
-
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>2.20.1</version>
-					<configuration>
-						<argLine>${failsafeArgLine}</argLine>
-						<enableAssertions>false</enableAssertions>
-						<classpathDependencyScopeExclude>compile</classpathDependencyScopeExclude>
-						<additionalClasspathElements>
-							<additionalClasspathElement>${weblogic.jar.path}</additionalClasspathElement>
-						</additionalClasspathElements>
-						<skipTests>${skip.unit.tests}</skipTests>
-                 <skipTests>${skip.unit.tests}</skipTests>
-                <includes>
-                    <include>com.stucho.divide_service.DivideServiceIT.java</include>
-                    
-                    <include>com.stucho.substract_service.SubtractServiceIT.java</include>
-                  
-                   
-                </includes>
-              
-                <skipTests>${skipUTMTs}</skipTests>
-					</configuration>
-					<executions>
-						<execution>
-							<goals>
-								<goal>integration-test</goal>
-								<goal>verify</goal>
-							</goals>
-							
-						</execution>
-					</executions>
-				</plugin>
-
-			</plugins>
-
-		</pluginManagement>
-
-	</build>
-   
-
+	<plugin>
+	  <groupId>org.apache.maven.plugins</groupId>
+	  <artifactId>maven-failsafe-plugin</artifactId>
+	  <version>2.20.1</version>
+	  <configuration>
+	    <argLine>${failsafeArgLine}</argLine>
+	    <enableAssertions>false</enableAssertions>
+	    <classpathDependencyScopeExclude>compile</classpathDependencyScopeExclude>
+	    <additionalClasspathElements>
+	      <additionalClasspathElement>${weblogic.jar.path}</additionalClasspathElement>
+	    </additionalClasspathElements>
+	    <skipTests>${skip.unit.tests}</skipTests>
+            <skipTests>${skip.unit.tests}</skipTests>
+            <includes>
+              <include>com.stucho.divide_service.DivideServiceIT.java</include>
+              <include>com.stucho.substract_service.SubtractServiceIT.java</include>
+            </includes>
+            <skipTests>${skipUTMTs}</skipTests>
+	  </configuration>
+	  <executions>
+	    <execution>
+	      <goals>
+		<goal>integration-test</goal>
+		<goal>verify</goal>
+	      </goals>
+	    </execution>
+	  </executions>
+	</plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
