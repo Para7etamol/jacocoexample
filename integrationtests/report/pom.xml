@@ -49,15 +49,58 @@
 	      <skip>false</skip>
 	    </configuration>
 	  </execution>
-	  <execution>
-	    <id>report-aggregate</id>
-	    <phase>verify</phase>
-	    <goals>
-	      <goal>report-aggregate</goal>
-	    </goals>						
-	  </execution>
 	</executions>
       </plugin>
+	<!-- Start maven-ant run plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <!--   <version>${version.maven.antrunplugin}</version>-->
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <phase>post-integration-test</phase>
+              <configuration>
+                <target xmlns:jacoco="antlib:org.jacoco.ant">
+                  <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+                    <classpath path="${project.build.directory}"/>
+                  </taskdef>
+                  <jacoco:report>
+                    <executiondata>
+		      <fileset dir="../../">
+			<include name="**/*.exec"/>
+		      </fileset>                                                		      			
+                    </executiondata>
+                    <structure name="Jacoco Example">
+                      <classfiles>
+			<fileset dir="../../businesscode/">
+			  <include name="**/*.class"/>
+			</fileset>                                                		      			
+                      </classfiles>
+                      <sourcefiles encoding="UTF-8">
+			<fileset dir="../../businesscode/">
+			  <include name="**/*.java"/>
+			</fileset>                                                		      			
+                      </sourcefiles>
+                    </structure>
+                    <html destdir="${project.build.directory}/report/target/site"/>
+                  </jacoco:report>
+                </target>
+              </configuration>
+              <goals>
+                <goal>run</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.jacoco</groupId>
+              <artifactId>org.jacoco.ant</artifactId>
+              <version>0.8.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+	<!-- End maven-ant run plugin -->
     </plugins>
   </build>
 </project>
