@@ -4,7 +4,7 @@
   <parent>
     <artifactId>integrationtests</artifactId>
     <groupId>com.stucho</groupId>
-    <version>INT-SNAPSHOT</version>
+    <version>RC-SNAPSHOT</version>
   </parent>
   <artifactId>multiply_divide_tests</artifactId>
   
@@ -108,11 +108,6 @@
 	<artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
       
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-antrun-plugin</artifactId>
-      </plugin>
-
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-surefire-plugin</artifactId>
