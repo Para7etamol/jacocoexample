@@ -64,33 +64,24 @@
                   </taskdef>
                   <jacoco:report>
                     <executiondata>
-		      		<fileset dir="../../">
-					<include name="**/*.exec"/>
-		      		</fileset>                                                		      			
+		      <fileset dir="../../">
+			<include name="**/*.exec"/>
+		      </fileset>                                                		      			
                     </executiondata>
                     <structure name="Jacoco Example">
                       <classfiles>
-						<fileset dir="../../businesscode/">
-			  				<include name="**/*.class"/>
-						</fileset>
-			  			<fileset dir="../">
-			  				<include name="**/*.class"/>
-						</fileset>
+			<fileset dir="../..">
+			  <include name="**/*.class"/>
+			</fileset>
                       </classfiles>
                       <sourcefiles encoding="UTF-8">
                     	<fileset dir="../../businesscode/add_server/src/main/java"/>
                     	<fileset dir="../../businesscode/add_server/src/test/java"/>
                     	<fileset dir="../../businesscode/multiply_divide_server/src/main/java"/>
                     	<fileset dir="../../businesscode/multiply_divide_server/src/test/java"/>
-                    	 <fileset dir="../../businesscode/ejb_client/src/main/java"/>
+                    	<fileset dir="../../businesscode/ejb_client/src/main/java"/>
                      	<fileset dir="../../integrationtests/add_sub_tests/src/test/java"/>
                       	<fileset dir="../../integrationtests/multiply_divide_tests/src/test/java"/>
-						<fileset dir="../../businesscode/">
-			  				<include name="**/*.java"/>
-						</fileset> 
-						<fileset dir="../">
-			  				<include name="**/*.java"/>
-						</fileset> 
                       </sourcefiles>
                     </structure>
                     <html destdir="${project.build.directory}/report/target/site"/>
