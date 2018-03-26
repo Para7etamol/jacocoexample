@@ -1,4 +1,4 @@
-SEARCH_LOCATION=/drives/c/Users/sarath.kumar/output
+SEARCH_LOCATION=/drives/c/Users/sarath.kumar/jacoco_report
 JACOCO_CLI_HOME=/drives/c/Users/sarath.kumar/java/lib/jacoco-0.8.1-20180212.125243-11/lib
 CLASSES_FOLDER=classes
 SOURCES_FOLDER=sources
