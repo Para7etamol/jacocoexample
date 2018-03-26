@@ -32,17 +32,17 @@
 							<phase>verify</phase>
 							<configuration>
 								<target>
-									<copy todir="${user.home}/output/sources">
+									<copy todir="${jacoco.report.location}/sources">
 										<fileset dir="${project.build.sourceDirectory}">
 											<include name="**/*.java" />
 										</fileset>
 									</copy>
-									<copy todir="${user.home}/output/classes">
+									<copy todir="${jacoco.report.location}/classes">
 										<fileset dir="${project.build.outputDirectory}">
 											<include name="**/*.class" />
 										</fileset>
 									</copy>
-									<copy todir="${user.home}/output/exec_data">
+									<copy todir="${jacoco.report.location}/exec_data">
 										<fileset dir="${project.build.directory}">
 											<include name="**/*.exec" />
 										</fileset>
