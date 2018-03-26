@@ -1,0 +1,1 @@
+SET EXTRA_JAVA_PROPERTIES=-javaagent:lib/jacocoagent.jar=output=tcpserver,address=localhost,port=6301,includes=com.stucho.*

@@ -1,0 +1,15 @@
+<profiles>
+
+	<profile>
+		<id>main</id>
+		<activation>
+			<activeByDefault>true</activeByDefault>
+		</activation>
+
+		<properties>
+  			<oracle.home>C:\Oracle\Middleware\Oracle_Home</oracle.home>
+  			<jacoco.report.location>${user.home}/jacoco_report</jacoco.report.location>
+		</properties>
+	</profile>
+	
+</profiles>
