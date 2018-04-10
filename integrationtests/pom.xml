@@ -1,16 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.stucho</groupId>
-    <artifactId>integrationtests</artifactId>
-    <version>RC-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <description>additional integration tests</description>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>integrationtests</artifactId>
+	<groupId>com.stucho</groupId>
+	<version>RC-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-    <modules>
-        <module>add_sub_tests</module>
-        <module>multiply_divide_tests</module>
-    </modules>
+	<properties>
+		<weblogic.jar.path>${oracle.home}/wlserver/server/lib/weblogic.jar</weblogic.jar.path>
+	</properties>
+	<modules>
+		<module>add_sub_tests</module>
+		<module>multiply_divide_tests</module>
+		<!-- <module>report</module> -->
+	</modules>
 
+	<!-- Added for Integration test module -->
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<configuration>
+								<target>
+									<copy todir="${jacoco.report.location}/exec_data">
+										<fileset dir="${project.build.directory}">
+											<include name="**/*.exec" />
+										</fileset>
+									</copy>
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.0</version>
+					<executions>
+						<!-- Prepares the property pointing to the JaCoCo runtime agent which 
+							is passed as VM argument when Maven the Surefire plugin is executed. -->
+						<execution>
+							<id>pre-integration-test</id>
+							<goals>
+								<goal>prepare-agent-integration</goal>
+							</goals>
+							<configuration>
+								<!-- Sets the path to the file which contains the execution data. -->
+								<destFile>${project.build.directory}/${project.name}-jacoco-it.exec</destFile>
+								<!-- Sets the name of the property containing the settings for JaCoCo 
+									runtime agent. -->
+								<propertyName>failsafeArgLine</propertyName>
+							</configuration>
+						</execution>
+
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20.1</version>
+					<configuration>
+						<argLine>-Xmx128m ${surefireArgLine}</argLine>
+						<enableAssertions>false</enableAssertions>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>2.20.1</version>
+					<configuration>
+						<argLine>${failsafeArgLine}</argLine>
+						<enableAssertions>false</enableAssertions>
+						<classpathDependencyScopeExclude>compile</classpathDependencyScopeExclude>
+						<additionalClasspathElements>
+							<additionalClasspathElement>${weblogic.jar.path}</additionalClasspathElement>
+						</additionalClasspathElements>
+						<skipTests>${skip.unit.tests}</skipTests>
+						<skipTests>${skip.unit.tests}</skipTests>
+						<includes>
+							<include>com.stucho.divide_service.DivideServiceIT.java</include>
+							<include>com.stucho.substract_service.SubtractServiceIT.java</include>
+						</includes>
+						<skipTests>${skipUTMTs}</skipTests>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

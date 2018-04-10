@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.stucho</groupId>
+    <artifactId>integrationtests</artifactId>
+    <version>RC-SNAPSHOT</version>
+  </parent>
+  <artifactId>report</artifactId>
+  <packaging>pom</packaging>
+  <name>report</name>
+  <description>report desc</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.stucho</groupId>
+      <artifactId>add_sub_tests</artifactId>
+      <version>RC-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.stucho</groupId>
+      <artifactId>multiply_divide_tests</artifactId>
+      <version>RC-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.7.9</version>
+	<executions>
+	  <execution>
+	    <id>pull-test-data</id>
+	    <phase>verify</phase>
+	    <goals>
+	      <goal>dump</goal>
+	    </goals>
+	    <configuration>
+	      <destFile>${project.build.directory}/jacoco-it.exec</destFile>
+	      <address>localhost</address>
+	      <port>6301</port>
+	      <reset>false</reset>
+	      <skip>false</skip>
+	    </configuration>
+	  </execution>
+	</executions>
+      </plugin>
+	<!-- Start maven-ant run plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <executions>
+            <execution>
+              <phase>post-integration-test</phase>
+              <configuration>
+                <target xmlns:jacoco="antlib:org.jacoco.ant">
+                  <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+                    <classpath path="${project.build.directory}"/>
+                  </taskdef>
+                  <jacoco:report>
+                    <executiondata>
+		      <fileset dir="../../">
+			<include name="**/*.exec"/>
+		      </fileset>                                                		      			
+                    </executiondata>
+                    <structure name="Jacoco Example">
+                      <classfiles>
+			<fileset dir="../..">
+			  <include name="**/*.class"/>
+			</fileset>
+                      </classfiles>
+                      <sourcefiles encoding="UTF-8">
+                    	<fileset dir="../../businesscode/add_server/src/main/java"/>
+                    	<fileset dir="../../businesscode/add_server/src/test/java"/>
+                    	<fileset dir="../../businesscode/multiply_divide_server/src/main/java"/>
+                    	<fileset dir="../../businesscode/multiply_divide_server/src/test/java"/>
+                    	<fileset dir="../../businesscode/ejb_client/src/main/java"/>
+                     	<fileset dir="../../integrationtests/add_sub_tests/src/test/java"/>
+                      	<fileset dir="../../integrationtests/multiply_divide_tests/src/test/java"/>
+                      </sourcefiles>
+                    </structure>
+                    <html destdir="${project.build.directory}/report/target/site"/>
+                  </jacoco:report>
+                </target>
+              </configuration>
+              <goals>
+                <goal>run</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.jacoco</groupId>
+              <artifactId>org.jacoco.ant</artifactId>
+              <version>0.8.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+	<!-- End of maven-ant run plugin -->
+    </plugins>
+  </build>
+</project>

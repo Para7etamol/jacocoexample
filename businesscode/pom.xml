@@ -6,7 +6,7 @@
 	<groupId>com.stucho</groupId>
 	<version>RC-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<properties>
 		<weblogic.jar.path>${oracle.home}/wlserver/server/lib/weblogic.jar</weblogic.jar.path>
 	</properties>
@@ -20,15 +20,46 @@
 	</modules>
 
 	<build>
-
 		<pluginManagement>
-
 			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<configuration>
+								<target>
+									<copy todir="${jacoco.report.location}/sources">
+										<fileset dir="${project.build.sourceDirectory}">
+											<include name="**/*.java" />
+										</fileset>
+									</copy>
+									<copy todir="${jacoco.report.location}/classes">
+										<fileset dir="${project.build.outputDirectory}">
+											<include name="**/*.class" />
+										</fileset>
+									</copy>
+									<copy todir="${jacoco.report.location}/exec_data">
+										<fileset dir="${project.build.directory}">
+											<include name="**/*.exec" />
+										</fileset>
+									</copy>
+								</target>
+							</configuration>
+							<goals>
+								<goal>run</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.7.9</version>
+					<version>0.8.0</version>
 					<executions>
 						<!-- Prepares the property pointing to the JaCoCo runtime agent which 
 							is passed as VM argument when Maven the Surefire plugin is executed. -->
@@ -58,7 +89,6 @@
 								<propertyName>failsafeArgLine</propertyName>
 							</configuration>
 						</execution>
-
 					</executions>
 				</plugin>
 
@@ -93,12 +123,8 @@
 						</execution>
 					</executions>
 				</plugin>
-
 			</plugins>
-
 		</pluginManagement>
-
 	</build>
-
 </project>
 

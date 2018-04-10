@@ -7,7 +7,8 @@
 		</activation>
 
 		<properties>
-			<oracle.home>C:\Oracle\Middleware\Oracle_Home</oracle.home>
+  			<oracle.home>C:\Oracle\Middleware\Oracle_Home</oracle.home>
+  			<jacoco.report.location>${user.home}/jacoco_report</jacoco.report.location>
 		</properties>
 	</profile>
 	
